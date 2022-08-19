@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  margin: auto;
+  padding: 30px;
+  width: 10vw;
+  min-width: 300px;
+  justify-content: space-around;
+  .title {
+    font-size: 30px;
+  }
+  .logout {
+    color: white;
+    border: 0;
+    width: 100px;
+    background-color: black;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+}

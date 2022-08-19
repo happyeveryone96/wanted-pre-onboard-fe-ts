@@ -30,6 +30,8 @@ function Home(): JSX.Element {
       })
       .then(res => {
         if (res.data.access_token) {
+          setEmail('');
+          setPassword('');
           localStorage.setItem('token', res.data.access_token);
           navigate('/todo');
         } else {

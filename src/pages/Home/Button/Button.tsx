@@ -14,7 +14,7 @@ function Button(props: ButtonProps): JSX.Element {
 
   return (
     <button
-      className={!signValid ? css.disabled : undefined}
+      className={`${css.btn} ${!signValid ? css.disabled : undefined}`}
       disabled={!signValid}
       onClick={onClick}
     >

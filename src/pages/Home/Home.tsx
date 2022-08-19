@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { emailState, passwordState } from '../../recoil/user';
 import css from './Home.module.scss';
 import { BASE_URL } from '../../config';
@@ -11,13 +11,11 @@ import Input from './Input/Input';
 function Home(): JSX.Element {
   const navigate = useNavigate();
 
-  // const email = useRecoilValue<string>(emailState);
   const [email, setEmail] = useRecoilState<string>(emailState);
   const handleEmailInput = (e: any): void => {
     setEmail(e.target.value);
   };
 
-  // const password = useRecoilValue<string>(passwordState);
   const [password, setPassword] = useRecoilState<string>(passwordState);
   const handlePwInput = (e: any): void => {
     setPassword(e.target.value);
@@ -75,8 +73,8 @@ function Home(): JSX.Element {
           onChange={handlePwInput}
           placeholder="패스워드를 입력해주세요."
         />
-        <Button name={'로그인'} onClick={login} />
-        <Button name={'회원가입'} onClick={signup} />
+        <Button name="로그인" onClick={login} />
+        <Button name="회원가입" onClick={signup} />
       </form>
     </div>
   );

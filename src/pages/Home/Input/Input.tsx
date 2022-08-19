@@ -23,6 +23,7 @@ function Input(props: InputProps): JSX.Element {
         placeholder={placeholder}
         autoComplete="off"
         type={type}
+        spellCheck={false}
       />
     </div>
   );

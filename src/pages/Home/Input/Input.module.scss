@@ -12,10 +12,11 @@
   label {
     display: block;
     margin: 10px 4px;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
   }
   .input {
-    @include size(29vw, $p: 4px);
+    @include size(29vw, $p: 4px 4px 10px);
     outline: 0;
     border: 0;
     border-bottom: 1px solid gray;

@@ -1,0 +1,22 @@
+@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
+  width: $w;
+  height: $h;
+  margin: $m;
+  padding: $p;
+  min-width: 300px;
+}
+
+button {
+  @include size(30vw, 50px, 30px auto);
+  display: block;
+  border-radius: 10px;
+  border: 0;
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+}
+
+.disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}

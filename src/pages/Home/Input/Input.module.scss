@@ -1,0 +1,23 @@
+@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
+  width: $w;
+  height: $h;
+  margin: $m;
+  padding: $p;
+  min-width: 300px;
+}
+
+.inputWrap {
+  @include size(30vw, $m: 30px auto);
+  position: relative;
+  label {
+    display: block;
+    margin: 10px 4px;
+    font-size: 12px;
+  }
+  .input {
+    @include size(29vw, $p: 4px);
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid gray;
+  }
+}

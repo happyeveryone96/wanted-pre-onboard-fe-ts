@@ -1,8 +1,8 @@
+@import '../styles/variables';
+
 .container {
+  @include size(10vw, $m: auto, $p: 30px);
   display: flex;
-  margin: auto;
-  padding: 30px;
-  width: 10vw;
   min-width: 300px;
   justify-content: space-around;
   .title {

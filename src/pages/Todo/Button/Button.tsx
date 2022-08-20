@@ -2,13 +2,13 @@ import React from 'react';
 import css from './Button.module.scss';
 import { BASE_URL } from '../../../config';
 import axios from 'axios';
-
+import { SetterOrUpdater } from 'recoil';
 interface ButtonProps {
   type: string;
   id?: number;
-  setIsUpdated: any;
-  setNewTodo?: any;
-  setIsCompletedTodo?: any;
+  setIsUpdated: SetterOrUpdater<boolean>;
+  setNewTodo?: React.Dispatch<React.SetStateAction<string>>;
+  setIsCompletedTodo?: React.Dispatch<React.SetStateAction<boolean>>;
   todo?: string;
   isCompleted?: boolean;
   setUpdate?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,9 +40,11 @@ function Button(props: ButtonProps): JSX.Element {
   };
 
   const cancelBtn = () => {
-    setUpdate!(false);
-    setNewTodo(todo);
-    setIsCompletedTodo(isCompleted);
+    if (setUpdate && setNewTodo && todo && setIsCompletedTodo && isCompleted) {
+      setUpdate(false);
+      setNewTodo(todo);
+      setIsCompletedTodo(isCompleted);
+    }
   };
 
   const className: string = `${type}Btn`;

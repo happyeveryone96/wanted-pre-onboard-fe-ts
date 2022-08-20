@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import css from './Input.module.scss';
 
 interface InputProps {
+  label: string;
   value: string;
   type: string;
-  label: string;
-  onChange(e: any): void;
   placeholder: string;
+  onChange(e: ChangeEvent<HTMLInputElement>): void;
 }
 
 function Input(props: InputProps): JSX.Element {
-  const { value, type, label, onChange, placeholder } = props;
+  const { label, value, type, placeholder, onChange } = props;
 
   return (
     <div className={css.inputWrap}>
@@ -18,11 +18,11 @@ function Input(props: InputProps): JSX.Element {
       <input
         className={css.input}
         value={value}
-        onChange={onChange}
+        type={type}
         name={type}
         placeholder={placeholder}
+        onChange={onChange}
         autoComplete="off"
-        type={type}
         spellCheck={false}
       />
     </div>

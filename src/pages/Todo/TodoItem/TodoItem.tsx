@@ -52,18 +52,18 @@ function TodoItem(props: TodoProps): JSX.Element {
           />
         )}
         <UpdateButton
+          id={id}
           update={update}
-          setUpdate={setUpdate}
           newTodo={newTodo}
           isCompletedTodo={isCompletedTodo}
-          id={id}
+          setUpdate={setUpdate}
         />
         {update && (
           <CancelButton
-            setNewTodo={setNewTodo}
             todo={todo}
-            setIsCompletedTodo={setIsCompletedTodo}
             isCompleted={isCompleted}
+            setNewTodo={setNewTodo}
+            setIsCompletedTodo={setIsCompletedTodo}
             setUpdate={setUpdate}
           />
         )}

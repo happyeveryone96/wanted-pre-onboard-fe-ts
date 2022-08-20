@@ -10,13 +10,13 @@ interface CancelButtonProps {
 }
 
 function CancelButton(props: CancelButtonProps) {
-  const { setUpdate, setNewTodo, todo, setIsCompletedTodo, isCompleted } =
+  const { todo, isCompleted, setNewTodo, setIsCompletedTodo, setUpdate } =
     props;
 
   const cancelBtn: MouseEventHandler<HTMLButtonElement> = () => {
-    setUpdate(false);
     setNewTodo(todo);
     setIsCompletedTodo(isCompleted);
+    setUpdate(false);
   };
 
   return (

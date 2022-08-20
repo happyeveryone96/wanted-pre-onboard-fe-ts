@@ -62,18 +62,18 @@ function Home(): JSX.Element {
     <div className={css.container}>
       <form>
         <Input
-          type="email"
-          value={email}
           label="이메일"
-          onChange={handleEmailInput}
+          value={email}
+          type="email"
           placeholder="이메일을 입력해주세요."
+          onChange={handleEmailInput}
         />
         <Input
-          type="password"
-          value={password}
           label="비밀번호"
-          onChange={handlePwInput}
+          value={password}
+          type="password"
           placeholder="패스워드를 입력해주세요."
+          onChange={handlePwInput}
         />
         <Button name="로그인" onClick={login} />
         <Button name="회원가입" onClick={signup} />

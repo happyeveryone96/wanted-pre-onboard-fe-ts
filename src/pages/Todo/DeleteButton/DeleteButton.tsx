@@ -25,6 +25,7 @@ function DeleteButton(props: DeleteButtonProps) {
         if (res.status === 204) setIsUpdated(true);
       });
   };
+
   return (
     <button className={css.deleteBtn} onClick={deleteTodo}>
       삭제

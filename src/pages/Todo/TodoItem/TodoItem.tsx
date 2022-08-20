@@ -3,8 +3,7 @@ import css from './TodoItem.module.scss';
 import { BASE_URL } from '../../../config';
 import axios from 'axios';
 import Button from '../Button/Button';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { updateModeState } from '../../../recoil/todo';
+import { SetterOrUpdater } from 'recoil';
 
 interface TodoProps {
   id: number;
@@ -23,7 +22,7 @@ function TodoItem(props: TodoProps): JSX.Element {
   const [isCompletedTodo, setIsCompletedTodo] = useState(isCompleted);
   const handleCompletedInput = () => setIsCompletedTodo(!isCompletedTodo);
 
-  const [update, setUpdate] = useRecoilState(updateModeState);
+  const [update, setUpdate] = useState(false);
   const updateBtn = () => {
     update ? updateTodo() : setUpdate(true);
   };
@@ -93,6 +92,7 @@ function TodoItem(props: TodoProps): JSX.Element {
             todo={todo}
             setIsCompletedTodo={setIsCompletedTodo}
             isCompleted={isCompleted}
+            setUpdate={setUpdate}
           />
         )}
         <Button type="delete" id={id} setIsUpdated={setIsUpdated} />

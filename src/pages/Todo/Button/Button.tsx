@@ -2,8 +2,6 @@ import React from 'react';
 import css from './Button.module.scss';
 import { BASE_URL } from '../../../config';
 import axios from 'axios';
-import { useSetRecoilState } from 'recoil';
-import { updateModeState } from '../../../recoil/todo';
 
 interface ButtonProps {
   type: string;
@@ -13,6 +11,7 @@ interface ButtonProps {
   setIsCompletedTodo?: any;
   todo?: string;
   isCompleted?: boolean;
+  setUpdate?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Button(props: ButtonProps): JSX.Element {
@@ -24,6 +23,7 @@ function Button(props: ButtonProps): JSX.Element {
     setIsCompletedTodo,
     todo,
     isCompleted,
+    setUpdate,
   } = props;
 
   const token = localStorage.getItem('token');
@@ -39,9 +39,8 @@ function Button(props: ButtonProps): JSX.Element {
       });
   };
 
-  const setUpdate = useSetRecoilState(updateModeState);
   const cancelBtn = () => {
-    setUpdate(false);
+    setUpdate!(false);
     setNewTodo(todo);
     setIsCompletedTodo(isCompleted);
   };

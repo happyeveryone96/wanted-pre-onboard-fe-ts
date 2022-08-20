@@ -21,8 +21,3 @@ export const todoListState = atom<TodoProps[]>({
   key: 'todoListState',
   default: [],
 });
-
-export const updateModeState = atom<boolean>({
-  key: 'updateModeState',
-  default: false,
-});

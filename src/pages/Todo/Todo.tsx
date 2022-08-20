@@ -4,7 +4,7 @@ import TodoItem from './TodoItem/TodoItem';
 import css from './Todo.module.scss';
 import { BASE_URL } from '../../config';
 import axios from 'axios';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { todoState, updateState, todoListState } from '../../recoil/todo';
 import Input from './Input/Input';
 
@@ -12,7 +12,6 @@ interface TodoProps {
   id: number;
   todo: string;
   isCompleted: boolean;
-  setIsUpdated: SetterOrUpdater<boolean>;
 }
 
 function Todo(): JSX.Element {
@@ -73,7 +72,6 @@ function Todo(): JSX.Element {
             id={todo.id}
             todo={todo.todo}
             isCompleted={todo.isCompleted}
-            setIsUpdated={setIsUpdated}
           />
         );
       })}

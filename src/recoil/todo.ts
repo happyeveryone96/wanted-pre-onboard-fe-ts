@@ -4,7 +4,6 @@ interface TodoProps {
   id: number;
   todo: string;
   isCompleted: boolean;
-  setIsUpdated: any;
 }
 
 export const todoState = atom<string>({

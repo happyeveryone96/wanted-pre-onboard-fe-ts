@@ -18,12 +18,6 @@
   cursor: pointer;
 }
 
-.deleteBtn {
-  @include size(50px, 25px, 10px);
-  @include position(absolute, 320px, -4px);
-  @include btnStyle();
-  background-color: rgb(34, 105, 131);
-}
 .cancelBtn {
   @include size(50px, 25px, 10px);
   @include position(absolute, 380px, -4px);

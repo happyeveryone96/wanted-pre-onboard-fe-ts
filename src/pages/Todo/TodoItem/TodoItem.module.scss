@@ -17,13 +17,6 @@
   cursor: pointer;
 }
 
-@mixin btnStyle {
-  border: 0;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-}
-
 .container {
   position: relative;
   left: 50px;
@@ -36,6 +29,7 @@
       @include position(relative, 40px);
       word-break: break-all;
       line-height: 26px;
+      top: 4px;
     }
     .inline {
       display: inline;
@@ -51,12 +45,6 @@
     }
     input[type='checkbox'] {
       @include checkBox;
-    }
-    .updateBtn {
-      @include size(50px, 25px, 10px 10px 0 50px);
-      @include position(absolute, 220px, -4px);
-      @include btnStyle();
-      background-color: rgb(48, 151, 189);
     }
   }
 }

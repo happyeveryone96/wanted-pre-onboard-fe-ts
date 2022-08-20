@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import css from './TodoItem.module.scss';
-import { BASE_URL } from '../../../config';
-import axios from 'axios';
-import Button from '../Button/Button';
-import { SetterOrUpdater } from 'recoil';
+import UpdateButton from '../UpdateButton/UpdateButton';
+import DeleteButton from '../DeleteButton/DeleteButton';
+import CancelButton from '../CancelButton/CancelButton';
 
 interface TodoProps {
   id: number;
   todo: string;
   isCompleted: boolean;
-  setIsUpdated: SetterOrUpdater<boolean>;
 }
 
 function TodoItem(props: TodoProps): JSX.Element {
-  const { id, todo, isCompleted, setIsUpdated } = props;
-  const token = localStorage.getItem('token');
+  const { id, todo, isCompleted } = props;
 
   const [newTodo, setNewTodo] = useState(todo);
   const handleTodoInput = (e: any): void => setNewTodo(e.target.value);
@@ -23,34 +20,6 @@ function TodoItem(props: TodoProps): JSX.Element {
   const handleCompletedInput = () => setIsCompletedTodo(!isCompletedTodo);
 
   const [update, setUpdate] = useState(false);
-  const updateBtn = () => {
-    update ? updateTodo() : setUpdate(true);
-  };
-
-  const updateTodo = () => {
-    if (newTodo !== '') {
-      axios
-        .put(
-          `${BASE_URL}/todos/${id}`,
-          {
-            todo: newTodo,
-            isCompleted: isCompletedTodo,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then(res => {
-          if (res.status === 200) {
-            setIsUpdated(true);
-            setUpdate(false);
-          }
-        });
-    } else alert('할 일을 입력해주세요!');
-  };
 
   return (
     <div className={css.container}>
@@ -81,13 +50,15 @@ function TodoItem(props: TodoProps): JSX.Element {
             style={{ cursor: 'not-allowed' }}
           />
         )}
-        <button className={css.updateBtn} onClick={updateBtn}>
-          {update ? '제출' : '수정'}
-        </button>
+        <UpdateButton
+          update={update}
+          setUpdate={setUpdate}
+          newTodo={newTodo}
+          isCompletedTodo={isCompletedTodo}
+          id={id}
+        />
         {update && (
-          <Button
-            type="cancel"
-            setIsUpdated={setIsUpdated}
+          <CancelButton
             setNewTodo={setNewTodo}
             todo={todo}
             setIsCompletedTodo={setIsCompletedTodo}
@@ -95,7 +66,7 @@ function TodoItem(props: TodoProps): JSX.Element {
             setUpdate={setUpdate}
           />
         )}
-        <Button type="delete" id={id} setIsUpdated={setIsUpdated} />
+        <DeleteButton id={id} />
       </li>
     </div>
   );

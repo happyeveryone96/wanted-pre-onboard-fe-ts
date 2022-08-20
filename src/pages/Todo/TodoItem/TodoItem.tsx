@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import css from './TodoItem.module.scss';
 import UpdateButton from '../UpdateButton/UpdateButton';
 import DeleteButton from '../DeleteButton/DeleteButton';
@@ -14,7 +14,8 @@ function TodoItem(props: TodoProps): JSX.Element {
   const { id, todo, isCompleted } = props;
 
   const [newTodo, setNewTodo] = useState(todo);
-  const handleTodoInput = (e: any): void => setNewTodo(e.target.value);
+  const handleTodoInput = (e: ChangeEvent<HTMLInputElement>): void =>
+    setNewTodo(e.target.value);
 
   const [isCompletedTodo, setIsCompletedTodo] = useState(isCompleted);
   const handleCompletedInput = () => setIsCompletedTodo(!isCompletedTodo);

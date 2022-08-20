@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import css from './DeleteButton.module.scss';
 import { BASE_URL } from '../../../config';
 import axios from 'axios';
@@ -14,7 +14,7 @@ function DeleteButton(props: DeleteButtonProps) {
   const setIsUpdated = useSetRecoilState(updateState);
 
   const token = localStorage.getItem('token');
-  const deleteTodo = (): void => {
+  const deleteTodo: MouseEventHandler<HTMLButtonElement> = (): void => {
     axios
       .delete(`${BASE_URL}/todos/${id}`, {
         headers: {

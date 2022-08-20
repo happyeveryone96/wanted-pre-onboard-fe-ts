@@ -1,4 +1,4 @@
-import React, { useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, ChangeEvent, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { emailState, passwordState } from '../../recoil/user';
@@ -21,7 +21,7 @@ function Home(): JSX.Element {
     setPassword(e.target.value);
   };
 
-  const login = (e: FormEvent<HTMLInputElement>): void => {
+  const login = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     axios
       .post(`${BASE_URL}/auth/signin`, {
@@ -40,7 +40,7 @@ function Home(): JSX.Element {
       });
   };
 
-  const signup = (e: FormEvent<HTMLInputElement>): void => {
+  const signup = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     axios
       .post(`${BASE_URL}/auth/signup`, {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import css from './UpdateButton.module.scss';
 import { BASE_URL } from '../../../config';
 import axios from 'axios';
@@ -18,11 +18,11 @@ function Button(props: ButtonProps): JSX.Element {
   const setIsUpdated = useSetRecoilState(updateState);
   const token = localStorage.getItem('token');
 
-  const updateBtn = () => {
+  const updateBtn: MouseEventHandler<HTMLButtonElement> = (): void => {
     update ? updateTodo() : setUpdate!(true);
   };
 
-  const updateTodo = () => {
+  const updateTodo = (): void => {
     if (newTodo !== '') {
       axios
         .put(

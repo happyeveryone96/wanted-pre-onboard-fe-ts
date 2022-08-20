@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';
 import { signValidState } from '../../../recoil/user';
 import css from './Button.module.scss';
 
 interface ButtonProps {
   name: string;
-  onClick(e: any): void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 function Button(props: ButtonProps): JSX.Element {

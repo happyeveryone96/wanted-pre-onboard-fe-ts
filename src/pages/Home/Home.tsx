@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { emailState, passwordState } from '../../recoil/user';
@@ -12,16 +12,16 @@ function Home(): JSX.Element {
   const navigate = useNavigate();
 
   const [email, setEmail] = useRecoilState<string>(emailState);
-  const handleEmailInput = (e: any): void => {
+  const handleEmailInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
   };
 
   const [password, setPassword] = useRecoilState<string>(passwordState);
-  const handlePwInput = (e: any): void => {
+  const handlePwInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setPassword(e.target.value);
   };
 
-  const login = (e: any): void => {
+  const login = (e: FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
     axios
       .post(`${BASE_URL}/auth/signin`, {
@@ -40,7 +40,7 @@ function Home(): JSX.Element {
       });
   };
 
-  const signup = (e: any): void => {
+  const signup = (e: FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
     axios
       .post(`${BASE_URL}/auth/signup`, {

@@ -1,27 +1,38 @@
 import React, { ChangeEvent } from 'react';
 import css from './Input.module.scss';
+import { useRecoilState } from 'recoil';
+import { emailState, passwordState } from '../../../recoil/user';
 
 interface InputProps {
   label: string;
-  value: string;
   type: string;
   placeholder: string;
-  onChange(e: ChangeEvent<HTMLInputElement>): void;
 }
 
 function Input(props: InputProps): JSX.Element {
-  const { label, value, type, placeholder, onChange } = props;
+  const { label, type, placeholder } = props;
 
+  const [email, setEmail] = useRecoilState<string>(emailState);
+  const handleEmailInput = (e: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+  };
+
+  const [password, setPassword] = useRecoilState<string>(passwordState);
+  const handlePwInput = (e: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
+  };
+
+  const isEmail: boolean = type === 'email';
   return (
     <div className={css.inputWrap}>
       <label htmlFor={type}>{label}</label>
       <input
         className={css.input}
-        value={value}
+        value={isEmail ? email : password}
         type={type}
         name={type}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={isEmail ? handleEmailInput : handlePwInput}
         autoComplete="off"
         spellCheck={false}
       />

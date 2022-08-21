@@ -12,10 +12,11 @@ function DeleteButton(props: DeleteButtonProps) {
   const { id } = props;
   const setIsUpdated = useSetRecoilState(updateState);
 
-  const deleteTodo: MouseEventHandler<HTMLButtonElement> = (): void => {
-    todoApi.deleteTodo(id).then(res => {
-      if (res.status === 204) setIsUpdated(true);
-    });
+  const deleteTodo: MouseEventHandler<
+    HTMLButtonElement
+  > = async (): Promise<void> => {
+    await todoApi.deleteTodo(id);
+    setIsUpdated(true);
   };
 
   return (

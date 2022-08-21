@@ -20,20 +20,17 @@ function Button(props: ButtonProps): JSX.Element {
     update ? updateTodo() : setUpdate!(true);
   };
 
-  const updateTodo = (): void => {
-    if (newTodo !== '') {
-      todoApi
-        .updateTodo(id, {
-          todo: newTodo,
-          isCompleted: isCompletedTodo,
-        })
-        .then(res => {
-          if (res.status === 200) {
-            setIsUpdated(true);
-            setUpdate!(false);
-          }
-        });
-    } else alert('할 일을 입력해주세요!');
+  const updateTodo = async (): Promise<void> => {
+    try {
+      await todoApi.updateTodo(id, {
+        todo: newTodo,
+        isCompleted: isCompletedTodo,
+      });
+      setIsUpdated(true);
+      setUpdate!(false);
+    } catch {
+      alert('할 일을 입력해주세요!');
+    }
   };
 
   return (

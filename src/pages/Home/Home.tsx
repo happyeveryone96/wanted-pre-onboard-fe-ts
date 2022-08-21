@@ -20,36 +20,33 @@ function Home(): JSX.Element {
     setPassword(e.target.value);
   };
 
-  const login = (e: MouseEvent<HTMLButtonElement>): void => {
+  const login = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
-    authApi
-      .signIn({
+    try {
+      const res = await authApi.signIn({
         email,
         password,
-      })
-      .then(res => {
-        if (res.data.access_token) {
-          setEmail('');
-          setPassword('');
-          localStorage.setItem('token', res.data.access_token);
-          navigate('/todo');
-        } else {
-          alert('회원 정보를 확인해주세요.');
-        }
       });
+      setEmail('');
+      setPassword('');
+      localStorage.setItem('token', res.data.access_token);
+      navigate('/todo');
+    } catch {
+      alert('회원 정보를 확인해주세요.');
+    }
   };
 
-  const signup = (e: MouseEvent<HTMLButtonElement>): void => {
+  const signup = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
-    authApi
-      .signUp({
+    try {
+      await authApi.signUp({
         email,
         password,
-      })
-      .then(res => {
-        if (res.data.access_token) alert('회원가입 성공!');
-        else alert('회원가입 실패!');
       });
+      alert('회원가입 성공!');
+    } catch {
+      alert('회원가입 실패!');
+    }
   };
 
   useEffect(() => {

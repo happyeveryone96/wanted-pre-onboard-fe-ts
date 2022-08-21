@@ -23,23 +23,23 @@ function Todo(): JSX.Element {
   }, []);
 
   const [isUpdated, setIsUpdated] = useRecoilState(updateState);
-  const createTodo = (): void => {
-    if (todo !== '') {
-      todoApi.createTodo({ todo }).then(res => {
-        if (res.status === 201) {
-          setIsUpdated(true);
-          setTodo('');
-        }
-      });
-    } else alert('할 일을 입력해주세요!');
+  const createTodo = async (): Promise<void> => {
+    try {
+      await todoApi.createTodo({ todo });
+      setIsUpdated(true);
+      setTodo('');
+    } catch {
+      alert('할 일을 입력해주세요!');
+    }
   };
 
   const [todoList, setTodoList] = useRecoilState<TodoProps[]>(todoListState);
   useEffect(() => {
-    setIsUpdated(false);
-    todoApi.getTodos().then(res => {
-      if (res.status === 200) setTodoList(res.data);
-    });
+    const fetchData = async (): Promise<void> => {
+      const res = await todoApi.getTodos();
+      setTodoList(res.data);
+    };
+    fetchData();
   }, [isUpdated]);
 
   return (

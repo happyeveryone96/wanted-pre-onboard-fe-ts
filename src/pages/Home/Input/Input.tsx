@@ -11,6 +11,7 @@ interface InputProps {
 
 function Input(props: InputProps): JSX.Element {
   const { label, type, placeholder } = props;
+  const isEmail: boolean = type === 'email';
 
   const [email, setEmail] = useRecoilState<string>(emailState);
   const handleEmailInput = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -22,7 +23,6 @@ function Input(props: InputProps): JSX.Element {
     setPassword(e.target.value);
   };
 
-  const isEmail: boolean = type === 'email';
   return (
     <div className={css.inputWrap}>
       <label htmlFor={type}>{label}</label>

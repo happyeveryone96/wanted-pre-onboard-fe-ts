@@ -15,14 +15,14 @@ interface ButtonProps {
 
 function Button(props: ButtonProps): JSX.Element {
   const { name } = props;
+  const isSignIn: boolean = name === '로그인';
   const signValid = useRecoilValue<boolean>(signValidState);
-
-  const navigate = useNavigate();
 
   const [email, setEmail] = useRecoilState<string>(emailState);
   const [password, setPassword] = useRecoilState<string>(passwordState);
+  const navigate = useNavigate();
 
-  const login = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const signIn = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
     try {
       const res = await authApi.signIn({
@@ -38,7 +38,7 @@ function Button(props: ButtonProps): JSX.Element {
     }
   };
 
-  const signup = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const signUp = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
     e.preventDefault();
     try {
       await authApi.signUp({
@@ -51,13 +51,11 @@ function Button(props: ButtonProps): JSX.Element {
     }
   };
 
-  const isLogin: boolean = name === '로그인';
-
   return (
     <button
       className={`${css.btn} ${!signValid ? css.disabled : undefined}`}
       disabled={!signValid}
-      onClick={isLogin ? login : signup}
+      onClick={isSignIn ? signIn : signUp}
     >
       {name}
     </button>

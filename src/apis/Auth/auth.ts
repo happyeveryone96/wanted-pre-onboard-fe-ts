@@ -1,11 +1,11 @@
-import { SignParams } from './types';
+import { AuthParams } from './types';
 import instance from '../axios';
 
 export const authApi = {
-  signIn(body: SignParams) {
+  signIn(body: AuthParams) {
     return instance.post('/auth/signin', body);
   },
-  signUp(body: SignParams) {
+  signUp(body: AuthParams) {
     return instance.post('/auth/signup', body);
   },
 };

@@ -1,4 +1,4 @@
-export interface SignParams {
+export interface AuthParams {
   email: string;
   password: string;
 }

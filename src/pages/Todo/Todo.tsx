@@ -26,8 +26,8 @@ function Todo(): JSX.Element {
   const createTodo = async (): Promise<void> => {
     try {
       await todoApi.createTodo({ todo });
-      setIsUpdated(true);
       setTodo('');
+      setIsUpdated(true);
     } catch {
       alert('할 일을 입력해주세요!');
     }
@@ -35,6 +35,7 @@ function Todo(): JSX.Element {
 
   const [todoList, setTodoList] = useRecoilState<TodoProps[]>(todoListState);
   useEffect(() => {
+    setIsUpdated(false);
     const fetchData = async (): Promise<void> => {
       const res = await todoApi.getTodos();
       setTodoList(res.data);

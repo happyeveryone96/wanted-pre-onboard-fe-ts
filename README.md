@@ -70,11 +70,11 @@ npm start
 - Fix: 기능을 수정 / 개선할 때, 버그 수정, README 파일 수정
 - Modify: 스타일 수정
 - Rename: 파일, 폴더명, 브랜치명 수정
-- Remove: 기능/파일 삭제
+- Remove: 기능 / 파일 삭제
 - Refactor: 코드 리팩토링
   <br><br>
 
 ## Naming Convention
 
-- UI 컴포넌트: Pascal Case
+- UI 컴포넌트: PascalCase
 - TS, className : camelCase

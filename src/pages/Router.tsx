@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home/Home';
 import Todo from './Todo/Todo';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 function Router(): JSX.Element {
   return (

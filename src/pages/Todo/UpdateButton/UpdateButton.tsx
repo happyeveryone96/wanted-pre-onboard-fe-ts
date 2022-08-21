@@ -1,9 +1,8 @@
 import React, { MouseEventHandler } from 'react';
 import css from './UpdateButton.module.scss';
-import { BASE_URL } from '../../../config';
-import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { updateState } from '../../../recoil/todo';
+import { todoApi } from '../../../apis/Todo/todo';
 
 interface ButtonProps {
   id: number;
@@ -16,7 +15,6 @@ interface ButtonProps {
 function Button(props: ButtonProps): JSX.Element {
   const { id, update, newTodo, isCompletedTodo, setUpdate } = props;
   const setIsUpdated = useSetRecoilState(updateState);
-  const token = localStorage.getItem('token');
 
   const updateBtn: MouseEventHandler<HTMLButtonElement> = (): void => {
     update ? updateTodo() : setUpdate!(true);
@@ -24,20 +22,11 @@ function Button(props: ButtonProps): JSX.Element {
 
   const updateTodo = (): void => {
     if (newTodo !== '') {
-      axios
-        .put(
-          `${BASE_URL}/todos/${id}`,
-          {
-            todo: newTodo,
-            isCompleted: isCompletedTodo,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+      todoApi
+        .updateTodo(id, {
+          todo: newTodo,
+          isCompleted: isCompletedTodo,
+        })
         .then(res => {
           if (res.status === 200) {
             setIsUpdated(true);

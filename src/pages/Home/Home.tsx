@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { emailState, passwordState } from '../../recoil/user';
 import css from './Home.module.scss';
-import { BASE_URL } from '../../config';
-import axios from 'axios';
 import Button from './Button/Button';
 import Input from './Input/Input';
+import { authApi } from '../../apis/Auth/auth';
 
 function Home(): JSX.Element {
   const navigate = useNavigate();
@@ -23,8 +22,8 @@ function Home(): JSX.Element {
 
   const login = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/auth/signin`, {
+    authApi
+      .signIn({
         email,
         password,
       })
@@ -42,8 +41,8 @@ function Home(): JSX.Element {
 
   const signup = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/auth/signup`, {
+    authApi
+      .signUp({
         email,
         password,
       })

@@ -3,6 +3,7 @@ import css from './TodoItem.module.scss';
 import UpdateButton from '../UpdateButton/UpdateButton';
 import DeleteButton from '../DeleteButton/DeleteButton';
 import CancelButton from '../CancelButton/CancelButton';
+import CheckBox from '../CheckBox/CheckBox';
 
 interface TodoProps {
   id: number;
@@ -18,8 +19,6 @@ function TodoItem(props: TodoProps) {
     setNewTodo(e.target.value);
 
   const [isCompletedTodo, setIsCompletedTodo] = useState(isCompleted);
-  const handleCompletedInput = () => setIsCompletedTodo(!isCompletedTodo);
-
   const [update, setUpdate] = useState(false);
 
   return (
@@ -38,20 +37,11 @@ function TodoItem(props: TodoProps) {
             spellCheck={false}
           />
         )}
-        {update ? (
-          <input
-            type="checkbox"
-            checked={isCompletedTodo}
-            onChange={handleCompletedInput}
-          />
-        ) : (
-          <input
-            type="checkbox"
-            checked={isCompletedTodo}
-            readOnly
-            style={{ cursor: 'not-allowed' }}
-          />
-        )}
+        <CheckBox
+          update={update}
+          isCompletedTodo={isCompletedTodo}
+          setIsCompletedTodo={setIsCompletedTodo}
+        />
         <UpdateButton
           id={id}
           update={update}

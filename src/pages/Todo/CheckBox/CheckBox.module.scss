@@ -3,3 +3,7 @@
 .checkBox {
   @include checkBox;
 }
+
+.notAllowed {
+  cursor: not-allowed;
+}

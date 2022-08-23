@@ -20,11 +20,10 @@ function CheckBox(props: CheckBoxProps) {
     />
   ) : (
     <input
-      className={css.checkBox}
+      className={`${css.checkBox} ${css.notAllowed}`}
       type="checkbox"
       checked={isCompletedTodo}
       readOnly
-      style={{ cursor: 'not-allowed' }}
     />
   );
 }

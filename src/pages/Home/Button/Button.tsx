@@ -48,13 +48,16 @@ function Button(props: ButtonProps) {
   const signUp = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      await authApi.signUp({
+      const res = await authApi.signUp({
         email,
         password,
       });
-      alert('회원가입 성공!');
+      localStorage.setItem('token', res.data.access_token);
+      alert('회원가입에 성공했습니다.\n투두 리스트 페이지로 이동합니다.');
+      startTransition(() => refreshTodoList());
+      navigate('/todo');
     } catch {
-      alert('회원가입 실패!');
+      alert('회원가입에 실패했습니다.');
     }
   };
 

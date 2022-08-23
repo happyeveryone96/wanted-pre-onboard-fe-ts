@@ -11,19 +11,13 @@ function CheckBox(props: CheckBoxProps) {
   const { update, isCompletedTodo, setIsCompletedTodo } = props;
   const handleCompletedInput = () => setIsCompletedTodo(!isCompletedTodo);
 
-  return update ? (
+  return (
     <input
-      className={css.checkBox}
+      className={`${css.checkBox} ${!update && css.notAllowed}`}
       type="checkbox"
       checked={isCompletedTodo}
-      onChange={handleCompletedInput}
-    />
-  ) : (
-    <input
-      className={`${css.checkBox} ${css.notAllowed}`}
-      type="checkbox"
-      checked={isCompletedTodo}
-      readOnly
+      onChange={update ? handleCompletedInput : undefined}
+      readOnly={!update}
     />
   );
 }

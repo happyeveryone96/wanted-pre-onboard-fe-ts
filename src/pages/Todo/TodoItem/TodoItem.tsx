@@ -42,6 +42,7 @@ function TodoItem(props: TodoProps): JSX.Element {
             type="checkbox"
             checked={isCompletedTodo}
             onChange={handleCompletedInput}
+            spellCheck={false}
           />
         ) : (
           <input

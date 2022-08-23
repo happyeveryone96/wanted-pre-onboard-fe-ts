@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TodoItem from './TodoItem/TodoItem';
 import css from './Todo.module.scss';
-import { useRecoilState } from 'recoil';
-import { todoState, updateState, todoListState } from '../../recoil/todo';
+import {
+  useRecoilState,
+  useRecoilRefresher_UNSTABLE,
+  useRecoilValue_TRANSITION_SUPPORT_UNSTABLE,
+} from 'recoil';
+import { todoState, todoListState } from '../../recoil/todo';
 import Input from './Input/Input';
 import { todoApi } from '../../apis/Todo/todo';
 
@@ -15,6 +19,7 @@ interface TodoProps {
 
 function Todo(): JSX.Element {
   const [todo, setTodo] = useRecoilState(todoState);
+  const [, startTransition] = useTransition();
 
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
@@ -22,26 +27,23 @@ function Todo(): JSX.Element {
     if (token === null) navigate('/');
   }, []);
 
-  const [isUpdated, setIsUpdated] = useRecoilState(updateState);
   const createTodo = async (): Promise<void> => {
     try {
       await todoApi.createTodo({ todo });
       setTodo('');
-      setIsUpdated(true);
+      refreshTodoList();
     } catch {
       alert('할 일을 입력해주세요!');
     }
   };
 
-  const [todoList, setTodoList] = useRecoilState<TodoProps[]>(todoListState);
+  const todoList: TodoProps[] =
+    useRecoilValue_TRANSITION_SUPPORT_UNSTABLE(todoListState);
+  const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
+
   useEffect(() => {
-    setIsUpdated(false);
-    const fetchData = async (): Promise<void> => {
-      const res = await todoApi.getTodos();
-      setTodoList(res.data);
-    };
-    fetchData();
-  }, [isUpdated]);
+    startTransition(() => refreshTodoList());
+  }, []);
 
   return (
     <div className={css.container}>
@@ -49,7 +51,7 @@ function Todo(): JSX.Element {
         <Input />
         <button onClick={createTodo}>추가</button>
       </div>
-      {todoList.map(todo => {
+      {todoList.map((todo: TodoProps) => {
         return (
           <TodoItem
             key={todo.id}

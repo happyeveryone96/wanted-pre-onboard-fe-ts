@@ -1,22 +1,19 @@
-import { atom } from 'recoil';
-
-interface TodoProps {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-}
+import { atom, selector } from 'recoil';
+import { todoApi } from '../apis/Todo/todo';
 
 export const todoState = atom<string>({
   key: 'todoState',
   default: '',
 });
 
-export const updateState = atom<boolean>({
-  key: 'updateState',
-  default: false,
-});
-
-export const todoListState = atom<TodoProps[]>({
+export const todoListState = selector({
   key: 'todoListState',
-  default: [],
+  get: async () => {
+    try {
+      const { data } = await todoApi.getTodos();
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  },
 });

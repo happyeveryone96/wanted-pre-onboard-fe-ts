@@ -14,12 +14,12 @@ function Input(props: InputProps) {
   const isEmail = type === 'email';
 
   const [email, setEmail] = useRecoilState(emailState);
-  const handleEmailInput = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleEmailInput = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
   const [password, setPassword] = useRecoilState(passwordState);
-  const handlePwInput = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handlePwInput = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 

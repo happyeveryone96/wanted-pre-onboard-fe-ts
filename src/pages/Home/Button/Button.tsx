@@ -20,11 +20,11 @@ interface ButtonProps {
 
 function Button(props: ButtonProps) {
   const { name } = props;
-  const isSignIn: boolean = name === '로그인';
-  const signValid = useRecoilValue<boolean>(signValidState);
+  const isSignIn = name === '로그인';
+  const signValid = useRecoilValue(signValidState);
 
-  const [email, setEmail] = useRecoilState<string>(emailState);
-  const [password, setPassword] = useRecoilState<string>(passwordState);
+  const [email, setEmail] = useRecoilState(emailState);
+  const [password, setPassword] = useRecoilState(passwordState);
 
   const navigate = useNavigate();
   const [, startTransition] = useTransition();

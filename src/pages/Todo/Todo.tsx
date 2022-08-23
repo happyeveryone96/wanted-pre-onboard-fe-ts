@@ -31,7 +31,7 @@ function Todo(): JSX.Element {
     try {
       await todoApi.createTodo({ todo });
       setTodo('');
-      refreshTodoList();
+      startTransition(() => refreshTodoList());
     } catch {
       alert('할 일을 입력해주세요!');
     }

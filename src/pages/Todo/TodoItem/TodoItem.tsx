@@ -35,6 +35,7 @@ function TodoItem(props: TodoProps): JSX.Element {
             className={css.input}
             value={newTodo}
             onChange={handleTodoInput}
+            spellCheck={false}
           />
         )}
         {update ? (
@@ -42,7 +43,6 @@ function TodoItem(props: TodoProps): JSX.Element {
             type="checkbox"
             checked={isCompletedTodo}
             onChange={handleCompletedInput}
-            spellCheck={false}
           />
         ) : (
           <input

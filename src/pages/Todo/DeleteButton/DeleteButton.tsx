@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useTransition } from 'react';
 import css from './DeleteButton.module.scss';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { todoListState } from '../../../recoil/todo';
@@ -11,12 +11,13 @@ interface DeleteButtonProps {
 function DeleteButton(props: DeleteButtonProps) {
   const { id } = props;
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
+  const [, startTransition] = useTransition();
 
   const deleteTodo: MouseEventHandler<
     HTMLButtonElement
   > = async (): Promise<void> => {
     await todoApi.deleteTodo(id);
-    refreshTodoList();
+    startTransition(() => refreshTodoList());
   };
 
   return (

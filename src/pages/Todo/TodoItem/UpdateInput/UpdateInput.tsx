@@ -8,7 +8,7 @@ interface UpdateInputProps {
 
 function UpdateInput(props: UpdateInputProps) {
   const { newTodo, setNewTodo } = props;
-  const handleTodoInput = (e: ChangeEvent<HTMLInputElement>): void =>
+  const handleTodoInput = (e: ChangeEvent<HTMLInputElement>) =>
     setNewTodo(e.target.value);
 
   return (

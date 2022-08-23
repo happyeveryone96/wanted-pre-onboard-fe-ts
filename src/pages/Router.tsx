@@ -4,7 +4,7 @@ import Home from './Home/Home';
 import Todo from './Todo/Todo';
 import Header from '../components/Header/Header';
 
-function Router(): JSX.Element {
+function Router() {
   return (
     <BrowserRouter>
       <Header />

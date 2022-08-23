@@ -40,8 +40,6 @@ function Button(props: ButtonProps) {
       localStorage.setItem('token', res.data.access_token);
       startTransition(() => refreshTodoList());
       navigate('/todo');
-      setEmail('');
-      setPassword('');
     } catch {
       alert('회원 정보를 확인해주세요.');
     }
@@ -59,6 +57,11 @@ function Button(props: ButtonProps) {
       alert('회원가입 실패!');
     }
   };
+
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+  }, []);
 
   return (
     <button

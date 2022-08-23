@@ -25,8 +25,5 @@
       outline: none;
       display: inline-block;
     }
-    input[type='checkbox'] {
-      @include checkBox;
-    }
   }
 }

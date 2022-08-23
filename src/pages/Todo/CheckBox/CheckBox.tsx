@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './CheckBox.module.scss';
 
 interface CheckBoxProps {
   update: boolean;
@@ -12,12 +13,14 @@ function CheckBox(props: CheckBoxProps) {
 
   return update ? (
     <input
+      className={css.checkBox}
       type="checkbox"
       checked={isCompletedTodo}
       onChange={handleCompletedInput}
     />
   ) : (
     <input
+      className={css.checkBox}
       type="checkbox"
       checked={isCompletedTodo}
       readOnly

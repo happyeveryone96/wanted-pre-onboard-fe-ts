@@ -1,10 +1,15 @@
-import React, { MouseEvent } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import React, { MouseEvent, useEffect, useTransition } from 'react';
+import {
+  useRecoilValue,
+  useRecoilState,
+  useRecoilRefresher_UNSTABLE,
+} from 'recoil';
 import {
   emailState,
   passwordState,
   signValidState,
 } from '../../../recoil/user';
+import { todoListState } from '../../../recoil/todo';
 import css from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../../../apis/Auth/auth';
@@ -20,7 +25,10 @@ function Button(props: ButtonProps) {
 
   const [email, setEmail] = useRecoilState<string>(emailState);
   const [password, setPassword] = useRecoilState<string>(passwordState);
+
   const navigate = useNavigate();
+  const [, startTransition] = useTransition();
+  const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
   const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -29,10 +37,11 @@ function Button(props: ButtonProps) {
         email,
         password,
       });
+      localStorage.setItem('token', res.data.access_token);
+      startTransition(() => refreshTodoList());
+      navigate('/todo');
       setEmail('');
       setPassword('');
-      localStorage.setItem('token', res.data.access_token);
-      navigate('/todo');
     } catch {
       alert('회원 정보를 확인해주세요.');
     }

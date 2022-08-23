@@ -7,7 +7,7 @@ function Header(): JSX.Element {
   const isTodo: boolean = location.pathname === '/todo';
 
   const navigate = useNavigate();
-  const logout = () => {
+  const logOut = () => {
     navigate('/');
     localStorage.removeItem('token');
   };
@@ -16,7 +16,7 @@ function Header(): JSX.Element {
     <div className={css.container}>
       <div className={css.title}>{isTodo ? '투두 리스트' : '환영합니다!'}</div>
       {isTodo && (
-        <button className={css.logout} onClick={logout}>
+        <button className={css.logOut} onClick={logOut}>
           로그아웃
         </button>
       )}

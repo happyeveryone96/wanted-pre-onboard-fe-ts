@@ -18,6 +18,7 @@ function Button(props: ButtonProps): JSX.Element {
   const updateBtn: MouseEventHandler<HTMLButtonElement> = (): void => {
     update ? updateTodo() : setUpdate!(true);
   };
+
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
   const updateTodo = async (): Promise<void> => {

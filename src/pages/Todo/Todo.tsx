@@ -20,12 +20,7 @@ interface TodoProps {
 function Todo(): JSX.Element {
   const [todo, setTodo] = useRecoilState(todoState);
   const [, startTransition] = useTransition();
-
-  const token = localStorage.getItem('token');
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (token === null) navigate('/');
-  }, []);
+  const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
   const createTodo = async (): Promise<void> => {
     try {
@@ -39,10 +34,16 @@ function Todo(): JSX.Element {
 
   const todoList: TodoProps[] =
     useRecoilValue_TRANSITION_SUPPORT_UNSTABLE(todoListState);
-  const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
   useEffect(() => {
     startTransition(() => refreshTodoList());
+  }, []);
+
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token === null) navigate('/');
   }, []);
 
   return (

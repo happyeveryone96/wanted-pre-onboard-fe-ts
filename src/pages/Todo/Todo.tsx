@@ -39,10 +39,10 @@ function Todo() {
     startTransition(() => refreshTodoList());
   }, []);
 
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     if (token === null) navigate('/');
   }, []);
 

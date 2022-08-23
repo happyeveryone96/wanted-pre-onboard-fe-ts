@@ -10,7 +10,7 @@ interface TodoProps {
   isCompleted: boolean;
 }
 
-function TodoItem(props: TodoProps): JSX.Element {
+function TodoItem(props: TodoProps) {
   const { id, todo, isCompleted } = props;
 
   const [newTodo, setNewTodo] = useState(todo);

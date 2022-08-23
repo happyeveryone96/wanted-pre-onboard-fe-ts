@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from './pages/Router';
 
-function App(): JSX.Element {
+function App() {
   return <Router />;
 }
 

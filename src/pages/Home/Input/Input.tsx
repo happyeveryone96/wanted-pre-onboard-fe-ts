@@ -9,16 +9,16 @@ interface InputProps {
   placeholder: string;
 }
 
-function Input(props: InputProps): JSX.Element {
+function Input(props: InputProps) {
   const { label, type, placeholder } = props;
-  const isEmail: boolean = type === 'email';
+  const isEmail = type === 'email';
 
-  const [email, setEmail] = useRecoilState<string>(emailState);
+  const [email, setEmail] = useRecoilState(emailState);
   const handleEmailInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
   };
 
-  const [password, setPassword] = useRecoilState<string>(passwordState);
+  const [password, setPassword] = useRecoilState(passwordState);
   const handlePwInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setPassword(e.target.value);
   };

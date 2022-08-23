@@ -12,16 +12,16 @@ interface ButtonProps {
   setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Button(props: ButtonProps): JSX.Element {
+function Button(props: ButtonProps) {
   const { id, update, newTodo, isCompletedTodo, setUpdate } = props;
 
-  const updateBtn: MouseEventHandler<HTMLButtonElement> = (): void => {
+  const updateBtn = () => {
     update ? updateTodo() : setUpdate!(true);
   };
 
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
-  const updateTodo = async (): Promise<void> => {
+  const updateTodo = async () => {
     try {
       await todoApi.updateTodo(id, {
         todo: newTodo,

@@ -17,12 +17,12 @@ interface TodoProps {
   isCompleted: boolean;
 }
 
-function Todo(): JSX.Element {
+function Todo() {
   const [todo, setTodo] = useRecoilState(todoState);
   const [, startTransition] = useTransition();
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
-  const createTodo = async (): Promise<void> => {
+  const createTodo = async () => {
     try {
       await todoApi.createTodo({ todo });
       setTodo('');
@@ -52,7 +52,7 @@ function Todo(): JSX.Element {
         <Input />
         <button onClick={createTodo}>추가</button>
       </div>
-      {todoList.map((todo: TodoProps) => {
+      {todoList.map(todo => {
         return (
           <TodoItem
             key={todo.id}

@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
 import { todoApi } from '../apis/Todo/todo';
 
-export const todoState = atom<string>({
+export const todoState = atom({
   key: 'todoState',
   default: '',
 });

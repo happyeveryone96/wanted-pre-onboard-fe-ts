@@ -2,9 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
 
-function Header(): JSX.Element {
+function Header() {
   const location = useLocation();
-  const isTodo: boolean = location.pathname === '/todo';
+  const isTodo = location.pathname === '/todo';
 
   const navigate = useNavigate();
   const logOut = () => {

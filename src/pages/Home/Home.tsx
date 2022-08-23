@@ -4,7 +4,7 @@ import css from './Home.module.scss';
 import Button from './Button/Button';
 import Input from './Input/Input';
 
-function Home(): JSX.Element {
+function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -13,7 +13,7 @@ interface ButtonProps {
   name: string;
 }
 
-function Button(props: ButtonProps): JSX.Element {
+function Button(props: ButtonProps) {
   const { name } = props;
   const isSignIn: boolean = name === '로그인';
   const signValid = useRecoilValue<boolean>(signValidState);
@@ -22,7 +22,7 @@ function Button(props: ButtonProps): JSX.Element {
   const [password, setPassword] = useRecoilState<string>(passwordState);
   const navigate = useNavigate();
 
-  const signIn = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const res = await authApi.signIn({
@@ -38,7 +38,7 @@ function Button(props: ButtonProps): JSX.Element {
     }
   };
 
-  const signUp = async (e: MouseEvent<HTMLButtonElement>): Promise<void> => {
+  const signUp = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await authApi.signUp({

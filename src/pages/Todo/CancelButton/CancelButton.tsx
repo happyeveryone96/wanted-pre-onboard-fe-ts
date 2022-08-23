@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import css from './CancelButton.module.scss';
 
 interface CancelButtonProps {
@@ -13,7 +13,7 @@ function CancelButton(props: CancelButtonProps) {
   const { todo, isCompleted, setNewTodo, setIsCompletedTodo, setUpdate } =
     props;
 
-  const cancelBtn: MouseEventHandler<HTMLButtonElement> = () => {
+  const cancelBtn = () => {
     setNewTodo(todo);
     setIsCompletedTodo(isCompleted);
     setUpdate(false);

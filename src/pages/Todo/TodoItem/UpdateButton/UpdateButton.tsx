@@ -1,8 +1,8 @@
 import React from 'react';
 import css from './UpdateButton.module.scss';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
-import { todoListState } from '../../../recoil/todo';
-import { todoApi } from '../../../apis/Todo/todo';
+import { todoListState } from '../../../../recoil/todo';
+import { todoApi } from '../../../../apis/Todo/todo';
 
 interface ButtonProps {
   id: number;

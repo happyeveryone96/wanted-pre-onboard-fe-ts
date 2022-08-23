@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import css from './TodoItem.module.scss';
-import UpdateButton from '../UpdateButton/UpdateButton';
-import DeleteButton from '../DeleteButton/DeleteButton';
-import CancelButton from '../CancelButton/CancelButton';
-import CheckBox from '../CheckBox/CheckBox';
+import UpdateButton from './UpdateButton/UpdateButton';
+import DeleteButton from './DeleteButton/DeleteButton';
+import CancelButton from './CancelButton/CancelButton';
+import CheckBox from './CheckBox/CheckBox';
+import UpdateInput from './UpdateInput/UpdateInput';
 
 interface TodoProps {
   id: number;
@@ -15,9 +16,6 @@ function TodoItem(props: TodoProps) {
   const { id, todo, isCompleted } = props;
 
   const [newTodo, setNewTodo] = useState(todo);
-  const handleTodoInput = (e: ChangeEvent<HTMLInputElement>): void =>
-    setNewTodo(e.target.value);
-
   const [isCompletedTodo, setIsCompletedTodo] = useState(isCompleted);
   const [update, setUpdate] = useState(false);
 
@@ -29,14 +27,7 @@ function TodoItem(props: TodoProps) {
         >
           {!update && todo}
         </span>
-        {update && (
-          <input
-            className={css.input}
-            value={newTodo}
-            onChange={handleTodoInput}
-            spellCheck={false}
-          />
-        )}
+        {update && <UpdateInput newTodo={newTodo} setNewTodo={setNewTodo} />}
         <CheckBox
           update={update}
           isCompletedTodo={isCompletedTodo}

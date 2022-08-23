@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import css from './UpdateButton.module.scss';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { todoListState } from '../../../recoil/todo';

@@ -30,34 +30,23 @@ function Button(props: ButtonProps) {
   const [, startTransition] = useTransition();
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
-  const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
+  const auth = async (type: string, e: MouseEvent<HTMLButtonElement>) => {
+    const isSignUp = type === 'signUp';
     e.preventDefault();
     try {
-      const res = await authApi.signIn({
+      const res = await (isSignUp ? authApi.signUp : authApi.signIn)({
         email,
         password,
       });
       localStorage.setItem('token', res.data.access_token);
+      if (isSignUp)
+        alert('회원가입에 성공했습니다.\n투두 리스트 페이지로 이동합니다.');
       startTransition(() => refreshTodoList());
       navigate('/todo');
     } catch {
-      alert('회원 정보를 확인해주세요.');
-    }
-  };
-
-  const signUp = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    try {
-      const res = await authApi.signUp({
-        email,
-        password,
-      });
-      localStorage.setItem('token', res.data.access_token);
-      alert('회원가입에 성공했습니다.\n투두 리스트 페이지로 이동합니다.');
-      startTransition(() => refreshTodoList());
-      navigate('/todo');
-    } catch {
-      alert('회원가입에 실패했습니다.');
+      isSignUp
+        ? alert('회원가입에 실패했습니다.')
+        : alert('회원 정보를 확인해주세요.');
     }
   };
 
@@ -70,7 +59,7 @@ function Button(props: ButtonProps) {
     <button
       className={`${css.btn} ${!signValid ? css.disabled : undefined}`}
       disabled={!signValid}
-      onClick={isSignIn ? signIn : signUp}
+      onClick={e => auth(isSignIn ? 'signIn' : 'signUp', e)}
     >
       {name}
     </button>

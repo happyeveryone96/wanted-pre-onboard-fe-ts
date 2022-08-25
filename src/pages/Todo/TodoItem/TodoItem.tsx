@@ -40,6 +40,7 @@ function TodoItem(props: TodoProps) {
           isCompletedTodo={isCompletedTodo}
           setUpdate={setUpdate}
         />
+        <DeleteButton id={id} />
         {update && (
           <CancelButton
             todo={todo}
@@ -49,7 +50,6 @@ function TodoItem(props: TodoProps) {
             setUpdate={setUpdate}
           />
         )}
-        <DeleteButton id={id} />
       </li>
     </div>
   );

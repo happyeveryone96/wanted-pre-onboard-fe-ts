@@ -16,13 +16,9 @@ function Header() {
     <div className={css.container}>
       <div className={css.title}>{isTodo ? '투두 리스트' : '환영합니다!'}</div>
       {isTodo && (
-        <input
-          type="button"
-          className={css.logOut}
-          onClick={logOut}
-          alt="로그아웃 버튼"
-          value="로그아웃"
-        />
+        <button className={css.logOut} onClick={logOut}>
+          로그아웃
+        </button>
       )}
     </div>
   );

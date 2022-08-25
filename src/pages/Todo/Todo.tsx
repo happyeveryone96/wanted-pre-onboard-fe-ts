@@ -50,13 +50,9 @@ function Todo() {
     <div className={css.container}>
       <div className={css.inputWrap}>
         <Input />
-        <input
-          type="button"
-          className={css.createBtn}
-          onClick={createTodo}
-          alt="입력된 할 일 추가 버튼"
-          value="추가"
-        />
+        <button className={css.createBtn} onClick={createTodo}>
+          추가
+        </button>
       </div>
       {todoList.map(todo => {
         return (

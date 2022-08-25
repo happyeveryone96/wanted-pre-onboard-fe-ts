@@ -30,7 +30,7 @@ function Button(props: ButtonProps) {
   const [, startTransition] = useTransition();
   const refreshTodoList = useRecoilRefresher_UNSTABLE(todoListState);
 
-  const auth = async (type: string, e: MouseEvent<HTMLButtonElement>) => {
+  const auth = async (type: string, e: MouseEvent<HTMLInputElement>) => {
     const isSignUp = type === 'signUp';
     e.preventDefault();
     try {
@@ -56,13 +56,14 @@ function Button(props: ButtonProps) {
   }, []);
 
   return (
-    <button
+    <input
+      type="button"
       className={`${css.btn} ${!signValid ? css.disabled : undefined}`}
       disabled={!signValid}
       onClick={e => auth(isSignIn ? 'signIn' : 'signUp', e)}
-    >
-      {name}
-    </button>
+      alt={isSignIn ? '로그인 버튼' : '회원가입 버튼'}
+      value={name}
+    />
   );
 }
 

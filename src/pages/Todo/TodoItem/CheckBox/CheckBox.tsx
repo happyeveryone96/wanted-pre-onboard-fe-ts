@@ -18,6 +18,7 @@ function CheckBox(props: CheckBoxProps) {
       checked={isCompletedTodo}
       onChange={update ? handleCompletedInput : undefined}
       readOnly={!update}
+      alt={isCompletedTodo ? '완료된 할 일' : '완료되지 않은 할 일'}
     />
   );
 }

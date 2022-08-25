@@ -17,6 +17,7 @@ function UpdateInput(props: UpdateInputProps) {
       value={newTodo}
       onChange={handleTodoInput}
       spellCheck={false}
+      alt="할 일 수정 사항 입력하는 곳"
     />
   );
 }

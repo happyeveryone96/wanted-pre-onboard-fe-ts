@@ -8,7 +8,14 @@ function Input() {
   const handleTodo = (e: ChangeEvent<HTMLInputElement>) =>
     setTodo(e.target.value);
 
-  return <input className={css.input} value={todo} onChange={handleTodo} />;
+  return (
+    <input
+      className={css.input}
+      value={todo}
+      onChange={handleTodo}
+      alt="추가할 할 일 입력하는 곳"
+    />
+  );
 }
 
 export default Input;

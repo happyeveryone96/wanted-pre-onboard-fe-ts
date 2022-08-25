@@ -13,7 +13,7 @@ function Input() {
       className={css.input}
       value={todo}
       onChange={handleTodo}
-      alt="추가할 할 일 입력하는 곳"
+      placeholder="할 일을 입력해주세요."
     />
   );
 }

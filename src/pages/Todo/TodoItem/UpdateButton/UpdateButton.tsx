@@ -35,13 +35,9 @@ function Button(props: ButtonProps) {
   };
 
   return (
-    <input
-      type="button"
-      className={css.updateBtn}
-      onClick={updateBtn}
-      alt={update ? '변경된 할 일 제출 버튼' : '할 일 수정 모드 전환 버튼'}
-      value={update ? '제출' : '수정'}
-    />
+    <button className={css.updateBtn} onClick={updateBtn}>
+      {update ? '제출' : '수정'}
+    </button>
   );
 }
 

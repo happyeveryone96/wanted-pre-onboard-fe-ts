@@ -19,13 +19,9 @@ function DeleteButton(props: DeleteButtonProps) {
   };
 
   return (
-    <input
-      type="button"
-      className={css.deleteBtn}
-      onClick={deleteTodo}
-      alt="할 일 삭제 버튼"
-      value="삭제"
-    />
+    <button className={css.deleteBtn} onClick={deleteTodo}>
+      삭제
+    </button>
   );
 }
 

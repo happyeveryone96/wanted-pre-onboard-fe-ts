@@ -35,7 +35,6 @@ function Input(props: InputProps) {
         onChange={isEmail ? handleEmailInput : handlePwInput}
         autoComplete="off"
         spellCheck={false}
-        alt={isEmail ? '이메일 입력하는 곳' : '비밀번호 입력하는 곳'}
       />
     </div>
   );

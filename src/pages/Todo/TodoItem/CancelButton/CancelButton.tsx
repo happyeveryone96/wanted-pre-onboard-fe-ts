@@ -20,13 +20,9 @@ function CancelButton(props: CancelButtonProps) {
   };
 
   return (
-    <input
-      type="button"
-      className={css.cancelBtn}
-      onClick={cancelBtn}
-      alt="할 일 수정 취소 버튼"
-      value="취소"
-    />
+    <button className={css.cancelBtn} onClick={cancelBtn}>
+      취소
+    </button>
   );
 }
 

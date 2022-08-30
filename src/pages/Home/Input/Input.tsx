@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import css from './Input.module.scss';
 import { useRecoilState } from 'recoil';
-import { emailState, passwordState } from '../../../recoil/user';
+import { emailState, passwordState } from '../../../recoil/auth';
 
 interface InputProps {
   label: string;

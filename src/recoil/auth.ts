@@ -10,8 +10,8 @@ export const passwordState = atom({
   default: '',
 });
 
-export const signValidState = selector({
-  key: 'signValidState',
+export const authValidState = selector({
+  key: 'authValidState',
   get: ({ get }) => {
     const email = get(emailState);
     const password = get(passwordState);

@@ -7,8 +7,8 @@ import {
 import {
   emailState,
   passwordState,
-  signValidState,
-} from '../../../recoil/user';
+  authValidState,
+} from '../../../recoil/auth';
 import { todoListState } from '../../../recoil/todo';
 import css from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ interface ButtonProps {
 function Button(props: ButtonProps) {
   const { name } = props;
   const isSignIn = name === '로그인';
-  const signValid = useRecoilValue(signValidState);
+  const signValid = useRecoilValue(authValidState);
 
   const [email, setEmail] = useRecoilState(emailState);
   const [password, setPassword] = useRecoilState(passwordState);
